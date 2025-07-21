@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 4009
+
+service:
+  users:
+    url: http://localhost:4005/api/ts/tickets
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+
+security:
+  api:
+
+    key: c761c9f0bb379612afbfd6ffeca90261db961bb93bce17728bc2a74430a66c0a
+    header: X-API-KEY
+  jwt:
+    secret-key: e2bd3b3c7af3861cc4b5eeeeba79892a25739cc44a56eef4c38b92d9b5a39159
+    expiration: 3600000 # 1 hour in milliseconds
+
+
+paypal:
+  client-id: AZgVDnqEVFg0tr0ya9PyVBdpprnuVHHPSXVWP5T3lws_kw5gBeTnY21zElSfw-WhttcB78Gaa3Sm6JWS
+  client-secret: EETQLur6Ow-G-7kh-7gq6gAqKR4NIheJV9lQr5Tia8Uqa4y_8Ce99zWu57bifjS6kbxRqlFevsSrEM-W
+  base-url: https://api-m.sandbox.paypal.com
+  return-url: http://localhost:4008/api/payment/paypal/success
+  cancel-url: http://localhost:4008/api/payment/paypal/cancel
+
+stripe:
+  secret: sk_test_51RhDaTR1Z2NQalNLeClF6dsNsFW1LnzM6v98c8OQ5ZZKHSpfOhqqLLeBEqx6Q1JgwXP906qQiXdBEs1s5rg5FCb300F8SYrr1Y
+  publishable: pk_test_51RhDaTR1Z2NQalNLXVx9pppFy2tEDMw5ehfDwdeMl6K0yEcHOsR3u5UJ7kpHhHex1MPht1PaCYOGZZqTlS4lDK6c00EQJWcg0W
