@@ -1,0 +1,54 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://sa:12345@mongocloud.7ts3d83.mongodb.net/Bus?retryWrites=true&w=majority&appName=MongoCloud
+  datasource:
+    url: jdbc:postgresql://localhost:5432/station-db
+    username: postgres
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 60000
+    requested-heartbeat: 60
+
+    # Publisher configuration (quan trọng cho producer)
+    publisher-confirm-type: correlated
+    publisher-returns: true
+
+    template:
+      mandatory: true
+      reply-timeout: 60000
+
+server:
+  port: 4004
+
+security:
+  api:
+
+    key: c761c9f0bb379612afbfd6ffeca90261db961bb93bce17728bc2a74430a66c0a
+    header: X-API-KEY
+  jwt:
+    secret-key: e2bd3b3c7af3861cc4b5eeeeba79892a25739cc44a56eef4c38b92d9b5a39159
+    expiration: 3600000 # 1 hour in milliseconds
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+
